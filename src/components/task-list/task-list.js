@@ -1,7 +1,7 @@
 import React from "react";
 import Task from "../task/task";
 
-
+import './task-list.css'
 
 const TaskList = ({todos}) => {
 
@@ -9,13 +9,16 @@ const TaskList = ({todos}) => {
         const {id, ...itemProps} = item;
 
         return (
-            <li key={id} className='list-group-item'>
+            <li key={id} className='completed'>
                 <Task {...itemProps}/>
+
             </li>);
+
+
     });
 
     return (
-        <ul className='list-group todo-list'>
+        <ul className='todo-list'>
             {elements}
         </ul>
     );

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './new-tast-form.css'
+
 const NewTaskForm = ()=>{
 
     return <input

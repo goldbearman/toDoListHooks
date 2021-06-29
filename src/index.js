@@ -11,7 +11,7 @@ import './index.css'
 const App = () => {
 
     const todoData = [
-        {label: 'Drink Coffee',important:false, id:1},
+        {label: 'Drink C',important:false, id:1},
         {label: 'Make awesome App',important:false, id:2},
         {label: 'Have a lunch',important:false, id:3},
     ];
