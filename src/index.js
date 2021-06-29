@@ -5,6 +5,9 @@ import AppHeader from "./components/app-header/app-header";
 import NewTaskForm from "./components/new-tast-form/new-tast-form";
 import TaskList from "./components/task-list/task-list";
 
+
+import './index.css'
+
 const App = () => {
 
     const todoData = [
