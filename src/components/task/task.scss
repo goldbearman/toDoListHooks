@@ -77,10 +77,10 @@ li label .description {
   color: #4d4d4d;
 }
 
-//li.completed label .description {
-//  color: #cdcdcd;
-//  text-decoration: line-through;
-//}
+li.completed label .description {
+  color: #cdcdcd;
+  text-decoration: line-through;
+}
 
 li .icon {
   position: absolute;
