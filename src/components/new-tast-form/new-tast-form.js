@@ -17,6 +17,9 @@ export default class NewTaskForm extends Component {
     onSubmit = (e) => {
         e.preventDefault();
         this.props.onItemAdded(this.state.label);
+        this.setState({
+            label:''
+        })
     }
 
     render() {
@@ -27,7 +30,8 @@ export default class NewTaskForm extends Component {
                     className="new-todo"
                     placeholder="What needs to be done?"
                     autoFocus
-                    onChange={this.onLabelChange}/>
+                    onChange={this.onLabelChange}
+                    value={this.state.label}/>
             </form>
         )
     }

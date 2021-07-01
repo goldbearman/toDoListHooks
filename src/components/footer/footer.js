@@ -7,8 +7,7 @@ export default class Footer extends Component {
 
     render() {
 
-
-        const {toDo} = this.props
+        const {toDo,filterActiveFooter} = this.props
 
         return (
             <footer className="footer">
@@ -18,7 +17,7 @@ export default class Footer extends Component {
                         <button className="selected">All</button>
                     </li>
                     <li>
-                        <button>Active</button>
+                        <button onClick={filterActiveFooter}>Active</button>
                     </li>
                     <li>
                         <button>Completed</button>

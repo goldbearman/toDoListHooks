@@ -7,7 +7,6 @@ import TaskList from "./components/task-list/task-list";
 import Footer from "./components/footer/footer";
 
 
-
 import './index.css'
 
 export default class App extends Component {
@@ -21,6 +20,22 @@ export default class App extends Component {
             this.createToDoItem('Have a coffee'),
             this.createToDoItem('Have a diner'),
         ]
+    }
+
+    addItem = (text) => {
+
+        const newItem = {
+            label: text,
+            important: false,
+            done: false,
+            id: this.maxId++
+        }
+        this.setState(({todoData}) => {
+            const newArr = [...todoData, newItem];
+            return {
+                todoData: newArr
+            }
+        })
     }
 
     deleteItem = (id) => {
@@ -38,7 +53,6 @@ export default class App extends Component {
     }
 
     onToggleDone = (id) => {
-        console.log('ToggleDone ' + id);
         this.setState(({todoData}) => {
             const idx = todoData.findIndex(el => el.id === id);
 
@@ -48,7 +62,7 @@ export default class App extends Component {
             const after = todoData.slice(idx + 1);
 
             const newArray = [...before, newItem, ...after];
-            return{
+            return {
                 todoData: newArray
             }
         })
@@ -60,21 +74,17 @@ export default class App extends Component {
         }
     }
 
-    addItem = (text)=>{
+    filterActive = () => {
+        this.setState(({todoData}) => {
 
-        const newItem = {
-            label: text,
-            important:false,
-            done: false,
-            id: this.maxId++
-        }
-        this.setState(({todoData})=>{
-            const newArr = [...todoData,newItem];
+            const newArray = todoData.filter(item => !item.done)
+            console.log(newArray)
             return {
-                todoData:newArr
+                todoData: newArray
             }
         })
     }
+
 
     render() {
 
@@ -92,7 +102,7 @@ export default class App extends Component {
                               onDeleted={this.deleteItem}
                               onToggleDone={this.onToggleDone}
                     />
-                    <Footer toDo={toDo}/>
+                    <Footer toDo={toDo} filterActiveFooter={this.filterActive}/>
                 </section>
             </section>
         );
