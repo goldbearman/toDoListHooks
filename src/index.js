@@ -16,30 +16,21 @@ export default class App extends Component {
             {label: 'Drink C', important: false, id: 1},
             {label: 'Make awesome App', important: false, id: 2},
             {label: 'Have a lunch', important: false, id: 3},
+            {label: 'Have a coffee', important: false, id: 4},
+            {label: 'Have a diner', important: false, id: 5},
         ]
     }
 
-    // onCheckBoxClick = () => {
-    //     this.setState(({todoData})=>{
-    //         console.log(todoData)
-    //     });
-    // }
-
-
     deleteItem = (id) => {
-        // const {todoDate} = this.state;
         this.setState(({todoData}) => {
             const idx =todoData.findIndex(el => el.id === id);
-
-            // todoDate.splice(idx, 1);
 
             const before = todoData.slice(0, idx);
             const after = todoData.slice(idx+1);
 
             const newArray = [...before, ...after];
-
             return {
-                todoDate: newArray
+                todoData: newArray
             }
         })
     }
@@ -47,7 +38,7 @@ export default class App extends Component {
     render() {
         return (
             <section className="todoapp">
-                <header class="header">
+                <header className="header">
                     <AppHeader/>
                     <NewTaskForm/>
                 </header>
