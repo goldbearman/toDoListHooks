@@ -5,6 +5,14 @@ import './footer.css'
 
 export default class Footer extends Component {
 
+
+
+    // pressFilterActiveFooter() {
+    //     // const {filterActiveFooter} = this.props
+    //     // filterActiveFooter();
+    //     this.props.filterActiveFooter().bind(this);
+    // }
+
     render() {
 
         const {toDo,filterActiveFooter} = this.props
