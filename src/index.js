@@ -7,26 +7,28 @@ import TaskList from "./components/task-list/task-list";
 import Footer from "./components/footer/footer";
 
 
+
 import './index.css'
 
 export default class App extends Component {
+    maxId = 100;
 
     state = {
         todoData: [
-            {label: 'Drink C', important: false, id: 1},
-            {label: 'Make awesome App', important: false, id: 2},
-            {label: 'Have a lunch', important: false, id: 3},
-            {label: 'Have a coffee', important: false, id: 4},
-            {label: 'Have a diner', important: false, id: 5},
+            this.createToDoItem('Drink C'),
+            this.createToDoItem('Make awesome App'),
+            this.createToDoItem('Have a lunch'),
+            this.createToDoItem('Have a coffee'),
+            this.createToDoItem('Have a diner'),
         ]
     }
 
     deleteItem = (id) => {
         this.setState(({todoData}) => {
-            const idx =todoData.findIndex(el => el.id === id);
+            const idx = todoData.findIndex(el => el.id === id);
 
             const before = todoData.slice(0, idx);
-            const after = todoData.slice(idx+1);
+            const after = todoData.slice(idx + 1);
 
             const newArray = [...before, ...after];
             return {
@@ -35,23 +37,67 @@ export default class App extends Component {
         })
     }
 
+    onToggleDone = (id) => {
+        console.log('ToggleDone ' + id);
+        this.setState(({todoData}) => {
+            const idx = todoData.findIndex(el => el.id === id);
+
+            const oldItem = todoData[idx];
+            const newItem = {...oldItem, done: !oldItem.done};
+            const before = todoData.slice(0, idx);
+            const after = todoData.slice(idx + 1);
+
+            const newArray = [...before, newItem, ...after];
+            return{
+                todoData: newArray
+            }
+        })
+    }
+
+    createToDoItem(label) {
+        return {
+            label, important: false, done: false, id: this.maxId++
+        }
+    }
+
+    addItem = (text)=>{
+
+        const newItem = {
+            label: text,
+            important:false,
+            done: false,
+            id: this.maxId++
+        }
+        this.setState(({todoData})=>{
+            const newArr = [...todoData,newItem];
+            return {
+                todoData:newArr
+            }
+        })
+    }
+
     render() {
+
+        const toDo = this.state.todoData.filter((el) => !el.done).length;
+
         return (
             <section className="todoapp">
                 <header className="header">
                     <AppHeader/>
-                    <NewTaskForm/>
+                    <NewTaskForm onItemAdded={this.addItem}/>
                 </header>
                 <section className="main">
 
-                    <TaskList todos={this.state.todoData} onDeleted={this.deleteItem}/>
-                    <Footer/>
+                    <TaskList todos={this.state.todoData}
+                              onDeleted={this.deleteItem}
+                              onToggleDone={this.onToggleDone}
+                    />
+                    <Footer toDo={toDo}/>
                 </section>
             </section>
         );
     }
 };
-
 
 ReactDOM.render(
     <App/>

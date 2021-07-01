@@ -1,4 +1,4 @@
-import React,{Component} from 'react'
+import React, {Component} from 'react'
 
 import './footer.css'
 
@@ -8,10 +8,11 @@ export default class Footer extends Component {
     render() {
 
 
+        const {toDo} = this.props
 
-        return(
+        return (
             <footer className="footer">
-                <span className="todo-count">1 items left</span>
+                <span className="todo-count">{toDo} items left</span>
                 <ul className="filters">
                     <li>
                         <button className="selected">All</button>
