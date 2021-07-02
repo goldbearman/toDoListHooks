@@ -15,20 +15,21 @@ export default class Footer extends Component {
 
     render() {
 
-        const {toDo,filterActiveFooter} = this.props
+        const {toDo,filterActiveFooter,filter} = this.props
 
+        console.log(filter + " filter")
         return (
             <footer className="footer">
                 <span className="todo-count">{toDo} items left</span>
                 <ul className="filters">
                     <li>
-                        <button className="selected">All</button>
+                        <button className={filter==='all'?'selected':''} onClick={()=>filterActiveFooter('all')}>All</button>
                     </li>
                     <li>
-                        <button onClick={filterActiveFooter}>Active</button>
+                        <button className={filter==='active'?'selected':''} onClick={()=>filterActiveFooter('active')}>Active</button>
                     </li>
                     <li>
-                        <button>Completed</button>
+                        <button className={filter==='completed'?'selected':''} onClick={()=>filterActiveFooter('completed')}>Completed</button>
                     </li>
                 </ul>
                 <button className="clear-completed">Clear completed</button>

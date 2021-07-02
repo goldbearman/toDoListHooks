@@ -19,7 +19,8 @@ export default class App extends Component {
             this.createToDoItem('Have a lunch'),
             this.createToDoItem('Have a coffee'),
             this.createToDoItem('Have a diner'),
-        ]
+        ],
+        filter: 'all'
     }
 
     addItem = (text) => {
@@ -33,7 +34,8 @@ export default class App extends Component {
         this.setState(({todoData}) => {
             const newArr = [...todoData, newItem];
             return {
-                todoData: newArr
+                todoData: newArr,
+                filter: 'all'
             }
         })
     }
@@ -47,7 +49,8 @@ export default class App extends Component {
 
             const newArray = [...before, ...after];
             return {
-                todoData: newArray
+                todoData: newArray,
+                filter: 'all'
             }
         })
     }
@@ -63,7 +66,8 @@ export default class App extends Component {
 
             const newArray = [...before, newItem, ...after];
             return {
-                todoData: newArray
+                todoData: newArray,
+                filter: 'all'
             }
         })
     }
@@ -74,15 +78,31 @@ export default class App extends Component {
         }
     }
 
-    filterActive = () => {
-        this.setState(({todoData}) => {
+    filterActive = (filter) => {
 
-            const newArray = todoData.filter(item => !item.done)
-            console.log(newArray)
+        console.log('app ' + filter)
+        this.setState(({todoData}) => {
+            console.log(todoData)
             return {
-                todoData: newArray
+                todoData: todoData,
+                filter: filter
             }
         })
+    }
+
+    showItems(items) {
+
+        switch (this.state.filter) {
+            case 'all':
+                console.log("all")
+                return items;
+            case 'active':
+                console.log("act")
+                return items.filter(item => !item.done)
+            case 'completed':
+                console.log("com")
+                return items.filter(item => item.done)
+        }
     }
 
 
@@ -98,11 +118,11 @@ export default class App extends Component {
                 </header>
                 <section className="main">
 
-                    <TaskList todos={this.state.todoData}
+                    <TaskList todos={this.showItems(this.state.todoData)}
                               onDeleted={this.deleteItem}
                               onToggleDone={this.onToggleDone}
                     />
-                    <Footer toDo={toDo} filterActiveFooter={this.filterActive}/>
+                    <Footer toDo={toDo} filterActiveFooter={this.filterActive} filter={this.state.filter}/>
                 </section>
             </section>
         );
