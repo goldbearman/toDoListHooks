@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {formatDistanceToNow } from 'date-fns'
 
 import './task.css'
 import PropTypes from 'prop-types'
@@ -21,7 +22,7 @@ export default class Task extends Component {
 
 
     render() {
-        const {label, id,onDeleleted,onToggleDone,done} = this.props
+        const {label, id,onDeleleted,onToggleDone,done, time} = this.props
 
         let className = '';
         if (done) {
@@ -34,7 +35,7 @@ export default class Task extends Component {
                     <input className="toggle" checked={done} type="checkbox" onChange={onToggleDone}/>
                     <label>
                         <span className="description">{label}</span>
-                        <span className="created">created 5 minutes ago</span>
+                        <span className="created">{formatDistanceToNow(time, { addSuffix: true })}</span>
                     </label>
                     <button className="icon icon-edit"></button>
                     <button className="icon icon-destroy" onClick={onDeleleted}></button>

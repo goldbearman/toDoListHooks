@@ -12,7 +12,6 @@ const TaskList = ({todos, onDeleted, onToggleDone}) => {
         return (
             <Task {...item} onDeleleted={() => onDeleted(id)}
                   onToggleDone={() => onToggleDone(id)}
-
             />
         );
     });
@@ -21,7 +20,6 @@ const TaskList = ({todos, onDeleted, onToggleDone}) => {
         <ul className='todo-list'>{elements}</ul>
     );
 };
-
 
 TaskList.defaultProps = {}
 

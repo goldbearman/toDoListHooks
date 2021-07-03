@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from "react-dom";
-import PropTypes from 'prop-types'
+
+
 
 import AppHeader from "./components/app-header/app-header";
 import NewTaskForm from "./components/new-tast-form/new-tast-form";
@@ -30,14 +31,8 @@ export default class App extends Component {
 
     addItem = (text) => {
 
-        const newItem = {
-            label: text,
-
-            done: false,
-            id: this.maxId++
-        }
         this.setState(({todoData}) => {
-            const newArr = [...todoData, newItem];
+            const newArr = [...todoData, this.createToDoItem(text)];
             return {
                 todoData: newArr,
                 filter: 'all'
@@ -90,9 +85,11 @@ export default class App extends Component {
 
     createToDoItem(label) {
         return {
-            label, done: false, id: this.maxId++
+            label, done: false, id: this.maxId++ , time: new Date()
         }
     }
+
+    // const time = formatDistanceToNow(time, { addSuffix: true })
 
     filterActive = (filter) => {
 
