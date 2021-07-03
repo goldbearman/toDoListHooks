@@ -15,7 +15,7 @@ export default class Footer extends Component {
 
     render() {
 
-        const {toDo,filterActiveFooter,filter} = this.props
+        const {toDo,filterActiveFooter,filter,clearCompleted} = this.props
 
         console.log(filter + " filter")
         return (
@@ -32,7 +32,7 @@ export default class Footer extends Component {
                         <button className={filter==='completed'?'selected':''} onClick={()=>filterActiveFooter('completed')}>Completed</button>
                     </li>
                 </ul>
-                <button className="clear-completed">Clear completed</button>
+                <button className="clear-completed" onClick={()=>clearCompleted()}>Clear completed</button>
             </footer>
         )
     }

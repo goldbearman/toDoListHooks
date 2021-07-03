@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ReactDOM from "react-dom";
+import PropTypes from 'prop-types'
 
 import AppHeader from "./components/app-header/app-header";
 import NewTaskForm from "./components/new-tast-form/new-tast-form";
@@ -11,6 +12,10 @@ import './index.css'
 
 export default class App extends Component {
     maxId = 100;
+
+    static propTypes = {
+
+    }
 
     state = {
         todoData: [
@@ -39,6 +44,17 @@ export default class App extends Component {
             }
         })
     }
+
+    clearCompleted = () => {
+        this.setState(({todoData,filter})=>{
+            const newArr= todoData.filter(item=>!item.done)
+            return{
+                todoData:newArr,
+                filter:filter
+            }
+        })
+    }
+
 
     deleteItem = (id) => {
         this.setState(({todoData}) => {
@@ -122,7 +138,7 @@ export default class App extends Component {
                               onDeleted={this.deleteItem}
                               onToggleDone={this.onToggleDone}
                     />
-                    <Footer toDo={toDo} filterActiveFooter={this.filterActive} filter={this.state.filter}/>
+                    <Footer toDo={toDo} filterActiveFooter={this.filterActive} filter={this.state.filter} clearCompleted={this.clearCompleted}/>
                 </section>
             </section>
         );

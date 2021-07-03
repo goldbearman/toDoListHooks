@@ -1,5 +1,6 @@
 import React from "react";
 import Task from "../task/task";
+import PropTypes from 'prop-types'
 
 import './task-list.css'
 
@@ -20,5 +21,14 @@ const TaskList = ({todos,onDeleted,onToggleDone,onToggleImportant}) => {
         <ul className='todo-list'>{elements}</ul>
     );
 };
+
+
+TaskList.defaultProps ={
+
+}
+
+TaskList.propTypes = {
+
+}
 
 export default TaskList;
