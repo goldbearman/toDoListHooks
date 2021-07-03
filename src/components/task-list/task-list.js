@@ -4,17 +4,17 @@ import PropTypes from 'prop-types'
 
 import './task-list.css'
 
-const TaskList = ({todos,onDeleted,onToggleDone,onToggleImportant}) => {
+const TaskList = ({todos, onDeleted, onToggleDone}) => {
 
     const elements = todos.map(item => {
         const {id} = item;
 
         return (
-                <Task {...item} onDeleleted={()=>onDeleted(id)}
-                      onToggleDone={()=>onToggleDone(id)}
-                      onToggleImportant={()=>onToggleImportant(id)}
-                />
-            );
+            <Task {...item} onDeleleted={() => onDeleted(id)}
+                  onToggleDone={() => onToggleDone(id)}
+
+            />
+        );
     });
 
     return (
@@ -23,12 +23,12 @@ const TaskList = ({todos,onDeleted,onToggleDone,onToggleImportant}) => {
 };
 
 
-TaskList.defaultProps ={
-
-}
+TaskList.defaultProps = {}
 
 TaskList.propTypes = {
-
+    todos: PropTypes.arrayOf(PropTypes.object).isRequired,
+    onDeleted: PropTypes.func,
+    onToggleDone: PropTypes.func,
 }
 
 export default TaskList;

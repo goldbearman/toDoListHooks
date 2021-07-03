@@ -1,17 +1,24 @@
 import React, {Component} from 'react'
 
 import './footer.css'
+import PropTypes from "prop-types";
+
 
 
 export default class Footer extends Component {
 
+    static defaultProps = {
+        filter:'all'
+    }
 
+    static propTypes = {
+        filterActiveFooter: PropTypes.func,
+        onToggleDone: PropTypes.func,
+        clearCompleted: PropTypes.func,
+        toDo:PropTypes.number,
+        filter:PropTypes.string
+    }
 
-    // pressFilterActiveFooter() {
-    //     // const {filterActiveFooter} = this.props
-    //     // filterActiveFooter();
-    //     this.props.filterActiveFooter().bind(this);
-    // }
 
     render() {
 

@@ -32,7 +32,7 @@ export default class App extends Component {
 
         const newItem = {
             label: text,
-            important: false,
+
             done: false,
             id: this.maxId++
         }
@@ -90,7 +90,7 @@ export default class App extends Component {
 
     createToDoItem(label) {
         return {
-            label, important: false, done: false, id: this.maxId++
+            label, done: false, id: this.maxId++
         }
     }
 
