@@ -1,39 +1,39 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 
-import './new-tast-form.css'
+import "./new-tast-form.css";
 
 export default class NewTaskForm extends Component {
+  state = {
+    label: "",
+  };
 
-    state = {
-        label: ''
-    }
+  onLabelChange = (e) => {
+    this.setState({
+      label: e.target.value,
+    });
+  };
 
-    onLabelChange = (e) => {
-        this.setState({
-            label: e.target.value
-        })
-    }
+  onSubmit = (e) => {
+    e.preventDefault();
+    // eslint-disable-next-line react/prop-types
+    this.props.onItemAdded(this.state.label);
+    this.setState({
+      label: "",
+    });
+  };
 
-    onSubmit = (e) => {
-        e.preventDefault();
-        this.props.onItemAdded(this.state.label);
-        this.setState({
-            label:''
-        })
-    }
-
-    render() {
-        return (
-            <form action="" onSubmit={this.onSubmit}>
-                <input
-                    type='text'
-                    className="new-todo"
-                    placeholder="What needs to be done?"
-                    autoFocus
-                    onChange={this.onLabelChange}
-                    value={this.state.label}/>
-            </form>
-        )
-    }
+  render() {
+    return (
+      <form action="" onSubmit={this.onSubmit}>
+        <input
+          type="text"
+          className="new-todo"
+          placeholder="What needs to be done?"
+          autoFocus
+          onChange={this.onLabelChange}
+          value={this.state.label}
+        />
+      </form>
+    );
+  }
 }
-
