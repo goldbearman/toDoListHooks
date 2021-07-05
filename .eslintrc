@@ -5,10 +5,16 @@
     "node": true
   },
   "extends": [
-    "plugin:react/recommended",
     "airbnb/base",
-    "plugin:prettier/recommended"
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "eslint:recommended"
   ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
   "parser": "babel-eslint",
   "plugins": [
     "react"
@@ -16,5 +22,10 @@
   "rules": {
     "no-plusplus": "off",
     "no-console": "error"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }

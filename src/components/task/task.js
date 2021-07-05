@@ -5,6 +5,24 @@ import "./task.css";
 import PropTypes from "prop-types";
 
 export default class Task extends Component {
+  state = {
+    timeNow: new Date(),
+  };
+
+  componentDidMount() {
+    this.timerID = setInterval(() => this.tick(), 60000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    this.setState({
+      timeNow: new Date(),
+    });
+  }
+
   static defaultProps = {
     label: "The task name",
     done: false,
@@ -39,7 +57,7 @@ export default class Task extends Component {
           <label>
             <span className="description">{label}</span>
             <span className="created">
-              {formatDistanceToNow(time, { addSuffix: true })}
+              created {formatDistanceToNow(time, this.state.timeNow)}
             </span>
           </label>
           <button className="icon icon-edit"></button>
