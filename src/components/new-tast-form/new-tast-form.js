@@ -15,8 +15,10 @@ export default class NewTaskForm extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    // eslint-disable-next-line react/prop-types
-    this.props.onItemAdded(this.state.label);
+    if (this.state.label !== undefined && this.state.label.trim() !== "") {
+      // eslint-disable-next-line react/prop-types
+      this.props.onItemAdded(this.state.label);
+    }
     this.setState({
       label: "",
     });
