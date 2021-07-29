@@ -75,6 +75,7 @@ li label .description {
   transition: color 0.4s;
   font-weight: 400;
   color: #4d4d4d;
+  width: 150px;
 }
 
 li.completed label .description {
@@ -123,3 +124,36 @@ li .edit {
 li.editing:last-child {
   margin-bottom: -1px;
 }
+
+.todo-list li label .player {
+  font-size: 13px;
+  color: gray;
+}
+
+.todo-list li .icon-pause,
+.todo-list li .icon-play {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.todo-list li .icon-play {
+  font-size: 15px;
+}
+
+.icon-pause:after {
+  content: '⏸';
+}
+
+.icon-play:after {
+  content: '▶';
+}
+
+.todo-list li .time {
+  margin-left: 8px;
+}
+
+.todo-list li .icon-player:hover {
+  color: #af5b5e;
+}
+

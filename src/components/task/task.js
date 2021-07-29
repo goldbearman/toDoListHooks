@@ -5,8 +5,14 @@ import "./task.css";
 import PropTypes from "prop-types";
 
 export default class Task extends Component {
+  constructor() {
+    super();
+    this.timer = 0;
+  }
+
   state = {
     timeNow: new Date(),
+    timePlay: 0,
   };
 
   componentDidMount() {
@@ -16,6 +22,22 @@ export default class Task extends Component {
   componentWillUnmount() {
     clearInterval(this.timerID);
   }
+
+  useInterval = () => {
+    // Your custom logic here
+    let time = this.state.timePlay;
+    this.timer = setInterval(
+      () =>
+        this.setState({
+          timePlay: time++,
+        }),
+      1000
+    );
+  };
+
+  usePause = () => {
+    clearInterval(this.timer);
+  };
 
   tick() {
     this.setState({
@@ -56,6 +78,17 @@ export default class Task extends Component {
           />
           <label>
             <span className="description">{label}</span>
+            <span className="player">
+              <button
+                className="icon-player icon-play"
+                onClick={this.useInterval}
+              ></button>
+              <button
+                className="icon-player icon-pause"
+                onClick={this.usePause}
+              ></button>
+              <span className="time">{this.state.timePlay}</span>
+            </span>
             <span className="created">
               created {formatDistanceToNow(time, this.state.timeNow)}
             </span>
