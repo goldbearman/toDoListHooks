@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { formatDistanceToNow } from "date-fns";
+import { formatDistanceToNow, format } from "date-fns";
 
 import "./task.css";
 import PropTypes from "prop-types";
@@ -8,6 +8,7 @@ export default class Task extends Component {
   constructor() {
     super();
     this.timer = 0;
+    this.intevalStart = false;
   }
 
   state = {
@@ -25,18 +26,22 @@ export default class Task extends Component {
 
   useInterval = () => {
     // Your custom logic here
-    let time = this.state.timePlay;
-    this.timer = setInterval(
-      () =>
-        this.setState({
-          timePlay: time++,
-        }),
-      1000
-    );
+    if (!this.intevalStart) {
+      this.intevalStart = true;
+      let time = this.state.timePlay;
+      this.timer = setInterval(
+        () =>
+          this.setState({
+            timePlay: time++,
+          }),
+        1000
+      );
+    }
   };
 
   usePause = () => {
     clearInterval(this.timer);
+    this.intevalStart = false;
   };
 
   tick() {
@@ -67,6 +72,12 @@ export default class Task extends Component {
       className += " completed";
     }
 
+    const dateNew = new Date(0, 0, 0, 0, 0, 0);
+    // dateNew.setHours(0, 0, 0, 0);
+    dateNew.setSeconds(this.state.timePlay);
+    const data = format(dateNew, "mm:ss");
+    // console.log(data);
+
     return (
       <li key={id} className={className}>
         <div className="view">
@@ -87,7 +98,7 @@ export default class Task extends Component {
                 className="icon-player icon-pause"
                 onClick={this.usePause}
               ></button>
-              <span className="time">{this.state.timePlay}</span>
+              <span className="time">{data}</span>
             </span>
             <span className="created">
               created {formatDistanceToNow(time, this.state.timeNow)}
