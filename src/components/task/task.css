@@ -148,9 +148,9 @@ li.editing:last-child {
   color: #cc9a9a;
 }
 
-.todo-list li .icon-play {
-  /*font-size: 15px;*/
-}
+/*.todo-list li .icon-play {*/
+/*  !*font-size: 15px;*!*/
+/*}*/
 
 .icon-pause:after {
   content: 'II';
