@@ -14,6 +14,7 @@ export default class Task extends Component {
   state = {
     timeNow: new Date(),
     timePlay: 0,
+    play: false,
   };
 
   componentDidMount() {
@@ -27,6 +28,9 @@ export default class Task extends Component {
   useInterval = () => {
     // Your custom logic here
     if (!this.intevalStart) {
+      this.setState({
+        play: true,
+      });
       this.intevalStart = true;
       let time = this.state.timePlay;
       this.timer = setInterval(
@@ -40,6 +44,9 @@ export default class Task extends Component {
   };
 
   usePause = () => {
+    this.setState({
+      play: false,
+    });
     clearInterval(this.timer);
     this.intevalStart = false;
   };
@@ -78,6 +85,12 @@ export default class Task extends Component {
     const data = format(dateNew, "mm:ss");
     // console.log(data);
 
+    let classPlay = "icon-player icon-play ";
+    let classPause = "icon-player icon-pause ";
+    if (this.state.play) {
+      classPlay += "active";
+    } else classPause += "active";
+
     return (
       <li key={id} className={className}>
         <div className="view">
@@ -90,14 +103,8 @@ export default class Task extends Component {
           <label>
             <span className="description">{label}</span>
             <span className="player">
-              <button
-                className="icon-player icon-play"
-                onClick={this.useInterval}
-              ></button>
-              <button
-                className="icon-player icon-pause"
-                onClick={this.usePause}
-              ></button>
+              <button className={classPlay} onClick={this.useInterval}></button>
+              <button className={classPause} onClick={this.usePause}></button>
               <span className="time">{data}</span>
             </span>
             <span className="created">
