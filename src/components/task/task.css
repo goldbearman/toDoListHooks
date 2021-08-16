@@ -23,6 +23,11 @@ li.editing .view {
   display: none;
 }
 
+li .view{
+  display: flex;
+  align-items: center;
+}
+
 li .toggle {
   text-align: center;
   width: 40px;
@@ -50,6 +55,7 @@ li .toggle + label {
   background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23ededed%22%20stroke-width%3D%223%22/%3E%3C/svg%3E');
   background-repeat: no-repeat;
   background-position: center left;
+  width: 530px;
 }
 
 li .toggle:checked + label {
@@ -60,7 +66,7 @@ li label {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 85px 15px 60px;
+  padding: 15px 25px 15px 60px;
 }
 
 li label .created {
@@ -84,14 +90,15 @@ li.completed label .description {
 }
 
 li .icon {
-  position: absolute;
-  top: 0;
-  bottom: -3px;
+  /*position: absolute;*/
+  /*top: 0;*/
+  /*bottom: -3px;*/
   width: 30px;
   height: 40px;
   font-size: 34px;
   color: #cc9a9a;
-  margin: auto 0 11px;
+  /*margin: auto 0 11px;*/
+  margin-right:10px;
   transition: color 0.2s ease-out;
   cursor: pointer;
 }
@@ -132,13 +139,17 @@ li.editing:last-child {
 
 .todo-list li .icon-pause,
 .todo-list li .icon-play {
-  font-size: 18px;
-  width: 18px;
-  height: 18px;
+  /*font-size: 18px;*/
+  /*width: 18px;*/
+  /*height: 18px;*/
+  width: 30px;
+  height: 40px;
+  font-size: 20px;
+  color: #cc9a9a;
 }
 
 .todo-list li .icon-play {
-  font-size: 15px;
+  /*font-size: 15px;*/
 }
 
 .icon-pause:after {
