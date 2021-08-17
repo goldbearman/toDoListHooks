@@ -176,3 +176,19 @@ li.editing:last-child {
 .todo-list li .icon-player.active {
     color: #af5b5e;
 }
+
+.todo-list li.completed label .icon-player {
+    color: #cdcdcd;
+}
+
+.todo-list li.completed label .time {
+    color: #cdcdcd;
+}
+
+.todo-list li.completed label .created {
+    color: #cdcdcd;
+}
+
+.todo-list li.completed .icon-edit {
+    color: #cdcdcd;
+}

@@ -36,7 +36,7 @@ export default class Task extends Component {
       this.timer = setInterval(
         () =>
           this.setState({
-            timePlay: time++,
+            timePlay: ++time,
           }),
         1000
       );
@@ -76,7 +76,7 @@ export default class Task extends Component {
 
     let className = "";
     if (done) {
-      className += " completed";
+      className += "completed";
     }
 
     const dateNew = new Date(0, 0, 0, 0, 0, 0);
@@ -103,7 +103,10 @@ export default class Task extends Component {
           <label>
             <span className="description">{label}</span>
             <span className="player">
-              <button className={classPlay} onClick={this.useInterval}></button>
+              <button
+                className={classPlay}
+                onClick={className === "completed" ? null : this.useInterval}
+              ></button>
               <button className={classPause} onClick={this.usePause}></button>
               <span className="time">{data}</span>
             </span>
