@@ -140,6 +140,7 @@ li.editing:last-child {
     font-size: 13px;
     color: gray;
     width: 110px;
+    text-align: center;
 }
 
 .todo-list li .icon-pause,
