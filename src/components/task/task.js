@@ -50,6 +50,11 @@ export default class Task extends Component {
     this.intevalStart = false;
   };
 
+  onChecked = () => {
+    this.props.onToggleDone();
+    this.usePause();
+  };
+
   tick() {
     this.setState({
       timeNow: new Date(),
@@ -71,11 +76,11 @@ export default class Task extends Component {
 
   render() {
     // eslint-disable-next-line react/prop-types
-    const { label, id, time, onDeleleted, onToggleDone, done } = this.props;
-
+    const { label, id, time, onDeleleted, done } = this.props;
     let className = "";
     if (done) {
       className += "completed";
+      // this.usePause();
     }
 
     const dateNew = new Date(0, 0, 0, 0, 0, 0);
@@ -97,7 +102,7 @@ export default class Task extends Component {
             className="toggle"
             checked={done}
             type="checkbox"
-            onChange={onToggleDone}
+            onChange={this.onChecked}
           />
           <label className="label">
             <span className="description">{label}</span>
