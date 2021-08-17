@@ -15,6 +15,7 @@ export default class Task extends Component {
     timeNow: new Date(),
     timePlay: 0,
     play: false,
+    checked: false,
   };
 
   componentDidMount() {
@@ -27,7 +28,7 @@ export default class Task extends Component {
 
   useInterval = () => {
     // Your custom logic here
-    if (!this.intevalStart) {
+    if (!this.intevalStart && !this.state.checked) {
       this.setState({
         play: true,
       });
@@ -57,6 +58,22 @@ export default class Task extends Component {
     });
   }
 
+  onCheckBox = () => {
+    console.log("onCheckBox");
+    console.log("onCheckBox");
+    if (!this.state.checked) {
+      this.props.onToggleDone();
+      this.setState({
+        checked: true,
+      });
+      this.usePause();
+    } else {
+      this.setState({
+        checked: false,
+      });
+    }
+  };
+
   static defaultProps = {
     label: "The task name",
     done: false,
@@ -72,7 +89,7 @@ export default class Task extends Component {
 
   render() {
     // eslint-disable-next-line react/prop-types
-    const { label, id, time, onDeleleted, onToggleDone, done } = this.props;
+    const { label, id, time, onDeleleted, done } = this.props;
 
     let className = "";
     if (done) {
@@ -98,9 +115,9 @@ export default class Task extends Component {
             className="toggle"
             checked={done}
             type="checkbox"
-            onChange={onToggleDone}
+            onChange={this.onCheckBox}
           />
-          <label>
+          <label className="label">
             <span className="description">{label}</span>
             <span className="player">
               <button
