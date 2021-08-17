@@ -93,6 +93,8 @@ li.completed label .description {
     text-decoration: line-through;
 }
 
+
+
 li .icon {
     /*position: absolute;*/
     /*top: 0;*/
@@ -140,6 +142,7 @@ li.editing:last-child {
     font-size: 13px;
     color: gray;
     width: 110px;
+    text-align: center;
 }
 
 .todo-list li .icon-pause,
@@ -175,4 +178,19 @@ li.editing:last-child {
 
 .todo-list li .icon-player.active {
     color: #af5b5e;
+}
+
+li.completed label.label .icon-player {
+    color: #cdcdcd;
+}
+
+li.completed label.label .time {
+    color: #cdcdcd;
+}
+
+li.completed label.label .created{
+    color: #cdcdcd;
+}
+li.completed label.label .icon.icon-edit{
+    color: #cdcdcd;
 }
