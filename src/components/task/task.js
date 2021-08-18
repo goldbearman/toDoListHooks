@@ -7,35 +7,29 @@ import PropTypes from "prop-types";
 export default class Task extends Component {
   constructor() {
     super();
-    this.timer = 0;
-    this.intevalStart = false;
+    this.linkTimer = 0;
   }
 
   state = {
     timeNow: new Date(),
     timePlay: 0,
-    play: false,
+    intevalStart: false,
   };
 
-  componentDidMount() {
-    this.timerID = setInterval(() => this.tick(), 60000);
-  }
-
   componentWillUnmount() {
-    clearInterval(this.timerID);
+    clearInterval(this.linkTimer);
   }
 
   useInterval = () => {
-    if (!this.intevalStart && !this.state.checked) {
+    if (!this.state.intevalStart) {
       this.setState({
-        play: true,
+        intevalStart: true,
       });
-      this.intevalStart = true;
-      let time = this.state.timePlay;
-      this.timer = setInterval(
+      this.linkTimer = setInterval(
         () =>
-          this.setState({
-            timePlay: ++time,
+          this.setState((prevState) => {
+            // eslint-disable-next-line no-param-reassign
+            return { timePlay: ++prevState.timePlay };
           }),
         1000
       );
@@ -43,11 +37,10 @@ export default class Task extends Component {
   };
 
   usePause = () => {
+    clearInterval(this.linkTimer);
     this.setState({
-      play: false,
+      intevalStart: false,
     });
-    clearInterval(this.timer);
-    this.intevalStart = false;
   };
 
   onChecked = () => {
@@ -75,7 +68,6 @@ export default class Task extends Component {
   };
 
   render() {
-    // eslint-disable-next-line react/prop-types
     const { label, id, time, onDeleleted, done } = this.props;
     let className = "";
     if (done) {
