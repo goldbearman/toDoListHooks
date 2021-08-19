@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Task from "../task/task";
+import TaskHook from "../task/task-hook";
+// import Task from "../task/task";
 
 import "./task-list.css";
 
@@ -9,7 +10,7 @@ const TaskList = ({ todos, onDeleted, onToggleDone }) => {
     const { id } = item;
 
     return (
-      <Task
+      <TaskHook
         key={id}
         {...item}
         onDeleleted={() => onDeleted(id)}

@@ -8,10 +8,10 @@ export default class Task extends Component {
   constructor() {
     super();
     this.linkTimer = 0;
+    this.timeNow = new Date();
   }
 
   state = {
-    timeNow: new Date(),
     timePlay: 0,
     intevalStart: false,
   };
@@ -48,17 +48,6 @@ export default class Task extends Component {
     this.usePause();
   };
 
-  tick() {
-    this.setState({
-      timeNow: new Date(),
-    });
-  }
-
-  static defaultProps = {
-    label: "The task name",
-    done: false,
-  };
-
   static propTypes = {
     label: PropTypes.string,
     id: PropTypes.number,
@@ -83,7 +72,7 @@ export default class Task extends Component {
 
     let classPlay = "icon-player icon-play ";
     let classPause = "icon-player icon-pause ";
-    if (this.state.play) {
+    if (this.state.intevalStart) {
       classPlay += "active";
     } else classPause += "active";
 
