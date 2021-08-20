@@ -8,31 +8,59 @@ export default class Task extends Component {
   constructor() {
     super();
     this.linkTimer = 0;
-    this.timeNow = new Date();
+    this.timeNow = 0;
   }
 
   state = {
     timePlay: 0,
     intevalStart: false,
+    dateInterval: 0,
   };
+
+  componentDidMount() {
+    // this.timeNow = setInterval(
+    //   () =>
+    //     this.setState((prevState) => {
+    //       // eslint-disable-next-line no-param-reassign
+    //       return { dateInterval: ++prevState.dateInterval };
+    //     }),
+    //   60000
+    // );
+    // eslint-disable-next-line no-undef
+    this.timeNow = this.setNewInterval(this.state.dateInterval, 60000);
+  }
 
   componentWillUnmount() {
     clearInterval(this.linkTimer);
+    clearInterval(this.timeNow);
   }
+
+  setNewInterval = (item, timeSize) => {
+    const timer = setInterval(
+      () =>
+        this.setState((prevState) => {
+          // eslint-disable-next-line no-param-reassign
+          return { item: ++prevState.item };
+        }),
+      timeSize
+    );
+    return timer;
+  };
 
   useInterval = () => {
     if (!this.state.intevalStart) {
       this.setState({
         intevalStart: true,
       });
-      this.linkTimer = setInterval(
-        () =>
-          this.setState((prevState) => {
-            // eslint-disable-next-line no-param-reassign
-            return { timePlay: ++prevState.timePlay };
-          }),
-        1000
-      );
+      this.linkTimer = this.setNewInterval(this.state.timePlay, 1000);
+      // this.linkTimer = setInterval(
+      //   () =>
+      //     this.setState((prevState) => {
+      //       // eslint-disable-next-line no-param-reassign
+      //       return { timePlay: ++prevState.timePlay };
+      //     }),
+      //   1000
+      // );
     }
   };
 
@@ -68,7 +96,7 @@ export default class Task extends Component {
     // dateNew.setHours(0, 0, 0, 0);
     dateNew.setSeconds(this.state.timePlay);
     const data = format(dateNew, "mm:ss");
-    // console.log(data);
+    console.log(data);
 
     let classPlay = "icon-player icon-play ";
     let classPause = "icon-player icon-pause ";
@@ -96,7 +124,7 @@ export default class Task extends Component {
               <span className="time">{data}</span>
             </span>
             <span className="created">
-              created {formatDistanceToNow(time, this.state.timeNow)}
+              created {formatDistanceToNow(time, this.state.dateInterval)}
             </span>
           </label>
           <button className="icon icon-edit"></button>
