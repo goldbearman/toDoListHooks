@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { formatDistanceToNow, format } from "date-fns";
+import { formatDistance, format } from "date-fns";
 
 import "./task.css";
 import PropTypes from "prop-types";
@@ -27,7 +27,7 @@ export default class Task extends Component {
     //   60000
     // );
     // eslint-disable-next-line no-undef
-    this.timeNow = this.setNewInterval(this.state.dateInterval, 60000);
+    this.timeNow = this.setNewInterval("dateInterval", 60000);
   }
 
   componentWillUnmount() {
@@ -36,11 +36,15 @@ export default class Task extends Component {
   }
 
   setNewInterval = (item, timeSize) => {
+    console.log(item);
     const timer = setInterval(
       () =>
         this.setState((prevState) => {
+          // console.log(item);
+          // console.log(item);
+          // console.log(prevState.item);
           // eslint-disable-next-line no-param-reassign
-          return { item: ++prevState.item };
+          return { [item]: ++prevState[item] };
         }),
       timeSize
     );
@@ -52,7 +56,7 @@ export default class Task extends Component {
       this.setState({
         intevalStart: true,
       });
-      this.linkTimer = this.setNewInterval(this.state.timePlay, 1000);
+      this.linkTimer = this.setNewInterval("timePlay", 1000);
       // this.linkTimer = setInterval(
       //   () =>
       //     this.setState((prevState) => {
@@ -92,17 +96,24 @@ export default class Task extends Component {
       // this.usePause();
     }
 
+    // console.log(this.state.timePlay);
+    // console.log(this.state.dateInterval);
+    // console.log(time);
+
     const dateNew = new Date(0, 0, 0, 0, 0, 0);
     // dateNew.setHours(0, 0, 0, 0);
     dateNew.setSeconds(this.state.timePlay);
+    // console.log(this.state.timePlay);
     const data = format(dateNew, "mm:ss");
-    console.log(data);
+    // console.log(data);
 
     let classPlay = "icon-player icon-play ";
     let classPause = "icon-player icon-pause ";
     if (this.state.intevalStart) {
       classPlay += "active";
     } else classPause += "active";
+
+    const da = Date.now() + this.state.dateInterval;
 
     return (
       <li key={id} className={className}>
@@ -123,9 +134,7 @@ export default class Task extends Component {
               <button className={classPause} onClick={this.usePause}></button>
               <span className="time">{data}</span>
             </span>
-            <span className="created">
-              created {formatDistanceToNow(time, this.state.dateInterval)}
-            </span>
+            <span className="created">created {formatDistance(time, da)}</span>
           </label>
           <button className="icon icon-edit"></button>
           <button className="icon icon-destroy" onClick={onDeleleted}></button>

@@ -1,3 +1,12 @@
+/*.taskContainer{*/
+/*    display: flex;*/
+/*}*/
+
+form{
+    display: flex;
+    width: 100%;
+}
+
 .new-todo,
 .edit {
   position: relative;
@@ -16,11 +25,29 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.new-todo.task{
+    width: 60%;
+}
+.new-todo.time{
+    width: 20%;
+}
+
+/*.task-form {*/
+/*    width: 300px;*/
+/*    !*width: 610px;*!*/
+/*}*/
+
 .new-todo {
-  padding: 16px 16px 16px 60px;
-  border: none;
-  color: #a4a3a3;
-  font-style: italic;
-  background: rgba(0, 0, 0, 0.003);
-  box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+    font-size: 24px;
+    /*width: 20%;*/
+    padding: 16px 16px 16px 60px;
+    border: none;
+    color: #a4a3a3;
+    font-style: italic;
+    background: rgba(0, 0, 0, 0.003);
+    box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);
+}
+
+.new-todo.task {
+    /*width: 40%;*/
 }
