@@ -134,7 +134,9 @@ export default class Task extends Component {
               <button className={classPause} onClick={this.usePause}></button>
               <span className="time">{data}</span>
             </span>
-            <span className="created">created {formatDistance(time, da)}</span>
+            <span className="created">
+              created {formatDistance(time, da)} ago
+            </span>
           </label>
           <button className="icon icon-edit"></button>
           <button className="icon icon-destroy" onClick={onDeleleted}></button>

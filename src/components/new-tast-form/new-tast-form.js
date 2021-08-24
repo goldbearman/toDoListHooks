@@ -12,25 +12,30 @@ export default class NewTaskForm extends Component {
 
   onLabelChange = (e) => {
     console.log(e.target.name);
-    switch (e.target.name) {
-      case "task":
-        this.setState({
-          label: e.target.value,
-        });
-        break;
-      case "min":
-        this.setState({
-          min: e.target.value,
-        });
-        break;
-      case "sec":
-        this.setState({
-          sec: e.target.value,
-        });
-        break;
-      default:
-        break;
-    }
+    // switch (e.target.name) {
+    //   case "task":
+    //     this.setState({
+    //       label: e.target.value,
+    //     });
+    //     break;
+    //   case "min":
+    //     this.setState({
+    //       min: e.target.value,
+    //     });
+    //     break;
+    //   case "sec":
+    //     this.setState({
+    //       sec: e.target.value,
+    //     });
+    //     break;
+    //   default:
+    //     break;
+    // }
+    this.setState({
+      label: e.target.value,
+      min: 15,
+      sec: "00",
+    });
   };
 
   onSubmit = (e) => {
@@ -50,19 +55,21 @@ export default class NewTaskForm extends Component {
 
   render() {
     return (
-      <form className="task-form" onSubmit={this.onSubmit}>
-        <input
-          type="text"
-          className="new-todo task"
-          name="task"
-          placeholder="Task"
-          autoFocus
-          onChange={this.onLabelChange}
-          value={this.state.label}
-          // defaultValue={this.state.sec}
-        />
+      <>
+        <form className="task-form" onSubmit={this.onSubmit}>
+          <input
+            type="text"
+            className="new-todo"
+            name="task"
+            placeholder="Task"
+            autoFocus
+            onChange={this.onLabelChange}
+            value={this.state.label}
+            // defaultValue={this.state.sec}
+          />
+        </form>
         <NumericInput
-          mobile
+          type="number"
           style={false}
           className="new-todo task"
           name="min"
@@ -70,7 +77,6 @@ export default class NewTaskForm extends Component {
           min={0}
           max={60}
           maxLength={2}
-          autocomplete={off}
           // onChange={this.onLabelChange}
           value={this.state.min}
           // defaultValue={this.state.sec}
@@ -88,8 +94,7 @@ export default class NewTaskForm extends Component {
           value={this.state.sec}
           // defaultValue={this.state.sec}
         />
-        <button type="submit" className="submitBtn"></button>
-      </form>
+      </>
     );
   }
 }
