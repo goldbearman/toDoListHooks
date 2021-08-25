@@ -1,47 +1,7 @@
-/*.taskContainer{*/
-/*    display: flex;*/
-/*}*/
-
-form {
-    display: flex;
-    width: 100%;
-}
-
-.new-todo,
-.edit {
-    position: relative;
-    margin: 0;
-    /*width: 100%;*/
-    font-size: 24px;
-    font-family: inherit;
-    font-weight: inherit;
-    line-height: 1.4em;
-    /*color: inherit;*/
-    padding: 6px;
-    /*border: 1px solid #999;*/
-    box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
-
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-.new-todo.task {
-    width: 60%;
-}
-
-.new-todo.time {
-    width: 20%;
-}
-
-/*.task-form {*/
-/*    width: 300px;*/
-/*    !*width: 610px;*!*/
-/*}*/
-
 .new-todo {
     font-size: 24px;
-    /*width: 100%;*/
-    padding: 16px 16px 16px 60px;
+    width: 100%;
+    padding: 16px 16px 16px 16px;
     border: none;
     color: #a4a3a3;
     font-style: italic;
@@ -52,8 +12,18 @@ form {
 
 }
 
-.new-todo.task {
-    padding: 16px 0;
-    width: 100px;
-    /*text-align: center;*/
+form.tasker{
+    width: 60%;
 }
+form.timer{
+    width: 20%;
+}
+
+.new-todo.task {
+    padding-left: 50px;
+}
+
+
+
+
+

@@ -14,16 +14,17 @@ export default class App extends Component {
 
   state = {
     todoData: [
-      this.createToDoItem("Drink Coffee"),
-      this.createToDoItem("Make awesome App"),
-      this.createToDoItem("Have a lunch"),
+      // this.createToDoItem({ label: "Drink coffee" }),
+      // this.createToDoItem({ label: "Make awesome App" }),
+      // this.createToDoItem({ label: "Have a lunch" }),
     ],
     filter: "all",
   };
 
-  addItem = (text) => {
+  addItem = (item) => {
+    console.log(item);
     this.setState(({ todoData }) => {
-      const newArr = [...todoData, this.createToDoItem(text)];
+      const newArr = [...todoData, this.createToDoItem(item)];
       return {
         todoData: newArr,
         filter: "all",
@@ -73,12 +74,14 @@ export default class App extends Component {
     });
   };
 
-  createToDoItem(label) {
+  createToDoItem({ label, min, sec }) {
+    console.log(label, min, sec);
     return {
       label,
       done: false,
       id: this.maxId++,
       time: Date.now(),
+      timer: min * 60 + sec,
     };
   }
 

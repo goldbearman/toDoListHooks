@@ -18,16 +18,19 @@ export default class Task extends Component {
   };
 
   componentDidMount() {
-    // this.timeNow = setInterval(
-    //   () =>
-    //     this.setState((prevState) => {
-    //       // eslint-disable-next-line no-param-reassign
-    //       return { dateInterval: ++prevState.dateInterval };
-    //     }),
-    //   60000
-    // );
+    this.timeNow = setInterval(
+      () =>
+        this.setState((prevState) => {
+          // eslint-disable-next-line no-param-reassign
+          return { dateInterval: ++prevState.dateInterval };
+        }),
+      60000
+    );
     // eslint-disable-next-line no-undef
-    this.timeNow = this.setNewInterval("dateInterval", 60000);
+    // this.timeNow = this.setNewInterval("dateInterval", 60000);
+    this.setState({
+      timePlay: this.props.timer,
+    });
   }
 
   componentWillUnmount() {
@@ -44,7 +47,7 @@ export default class Task extends Component {
           // console.log(item);
           // console.log(prevState.item);
           // eslint-disable-next-line no-param-reassign
-          return { [item]: ++prevState[item] };
+          return { [item]: --prevState[item] };
         }),
       timeSize
     );
@@ -89,23 +92,24 @@ export default class Task extends Component {
   };
 
   render() {
-    const { label, id, time, onDeleleted, done } = this.props;
+    const { label, id, time, timer, onDeleleted, done } = this.props;
     let className = "";
     if (done) {
       className += "completed";
-      // this.usePause();
     }
-
-    // console.log(this.state.timePlay);
-    // console.log(this.state.dateInterval);
-    // console.log(time);
-
-    const dateNew = new Date(0, 0, 0, 0, 0, 0);
-    // dateNew.setHours(0, 0, 0, 0);
-    dateNew.setSeconds(this.state.timePlay);
-    // console.log(this.state.timePlay);
-    const data = format(dateNew, "mm:ss");
-    // console.log(data);
+    let data = "fineshed";
+    console.log(data);
+    if (this.state.timePlay === 0 && timer !== 0) {
+      console.log("pause");
+      this.usePause();
+    }
+    if (timer !== 0) {
+      const dateNew = new Date(0, 0, 0, 0, 0, 0);
+      // dateNew.setHours(0, 0, 0, 0);
+      console.log(this.state.timePlay);
+      dateNew.setSeconds(this.state.timePlay);
+      data = format(dateNew, "mm:ss");
+    }
 
     let classPlay = "icon-player icon-play ";
     let classPause = "icon-player icon-pause ";
