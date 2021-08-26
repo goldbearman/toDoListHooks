@@ -13,11 +13,7 @@ export default class App extends Component {
   static propTypes = {};
 
   state = {
-    todoData: [
-      // this.createToDoItem({ label: "Drink coffee" }),
-      // this.createToDoItem({ label: "Make awesome App" }),
-      // this.createToDoItem({ label: "Have a lunch" }),
-    ],
+    todoData: [],
     filter: "all",
   };
 

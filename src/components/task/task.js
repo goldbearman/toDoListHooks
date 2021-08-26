@@ -85,9 +85,10 @@ export default class Task extends Component {
   render() {
     // eslint-disable-next-line no-unused-vars
     const { label, id, time, timer, onDeleleted, done } = this.props;
-    let className = "";
+    console.log(timer);
+    let className = "todo-list__item";
     if (done) {
-      className += "completed";
+      className += " completed";
     }
     const dateNew = new Date(0, 0, 0, 0, 0, 0);
     dateNew.setSeconds(this.state.timePlay);
@@ -120,7 +121,7 @@ export default class Task extends Component {
                 onClick={className === "completed" ? null : this.useInterval}
               ></button>
               <button className={classPause} onClick={this.usePause}></button>
-              <span className="time">{data}</span>
+              <span className="time">{timer === "0" ? "finished" : data}</span>
             </span>
             <span className="created">
               created {formatDistance(time, da)} ago

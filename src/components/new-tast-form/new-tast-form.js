@@ -105,6 +105,7 @@ export default class NewTaskForm extends Component {
             className="new-todo time"
             name="sec"
             placeholder="Sec"
+            onKeyDown={this.handleKeyDown}
             onChange={this.onLabelChange}
             value={this.state.sec}
           />
