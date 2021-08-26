@@ -1,20 +1,16 @@
 import React, { Component } from "react";
-import NumericInput from "react-numeric-input";
 
 import "./new-tast-form.css";
 
 export default class NewTaskForm extends Component {
   state = {
-    // label: "",
-    // min: "",
-    // sec: "",
     label: "",
     min: "",
     sec: "",
   };
 
   onLabelChange = (e) => {
-    console.log(e);
+    console.log(e.key);
     switch (e.target.name) {
       case "task":
         console.log("t");
@@ -24,12 +20,12 @@ export default class NewTaskForm extends Component {
         break;
       case "min":
         this.setState({
-          min: e.target.value,
+          min: this.checkNun(e.target.value, e),
         });
         break;
       case "sec":
         this.setState({
-          sec: e.target.value,
+          sec: this.checkNun(e.target.value, e),
         });
         break;
       default:
@@ -37,26 +33,23 @@ export default class NewTaskForm extends Component {
     }
   };
 
-  checkNun = (num) => {
-    let number = num;
-    console.log(number);
-    if (typeof number === "string") number = 0;
-    if (number > 60 || number < 0) number = 59;
-    console.log(number);
-    return number;
+  checkNun = (value) => {
+    let num = value;
+    if (num > 59) num = 59;
+    if (num < 0) num = 0;
+    return num;
   };
 
-  onLabelChangeMin = (value) => {
-    this.setState({
-      min: value,
-    });
-  };
-
-  onLabelChangeSec = (value) => {
-    console.log(value);
-    this.setState({
-      sec: value,
-    });
+  handleKeyDown = (e) => {
+    console.log(e.keyCode);
+    if (
+      e.keyCode === 107 ||
+      e.keyCode === 109 ||
+      e.keyCode === 187 ||
+      e.keyCode === 189
+    ) {
+      e.preventDefault();
+    }
   };
 
   onSubmit = (e) => {
@@ -82,6 +75,7 @@ export default class NewTaskForm extends Component {
       <>
         <form className="tasker" onSubmit={this.onSubmit}>
           <input
+            autoComplete="off"
             type="text"
             className="new-todo task"
             name="task"
@@ -92,30 +86,26 @@ export default class NewTaskForm extends Component {
           />
         </form>
         <form className="timer" onSubmit={this.onSubmit}>
-          <NumericInput
+          <input
+            autoComplete="off"
             type="number"
-            style={false}
             className="new-todo time"
             name="min"
+            min="0"
             placeholder="Min"
-            min={0}
-            max={60}
-            maxLength={2}
-            onChange={this.onLabelChangeMin}
+            onKeyDown={this.handleKeyDown}
+            onChange={this.onLabelChange}
             value={this.state.min}
           />
         </form>
         <form className="timer" onSubmit={this.onSubmit}>
-          <NumericInput
-            style={false}
+          <input
+            autoComplete="off"
             type="number"
             className="new-todo time"
             name="sec"
-            min={0}
-            max={60}
-            maxLength={2}
             placeholder="Sec"
-            onChange={this.onLabelChangeSec}
+            onChange={this.onLabelChange}
             value={this.state.sec}
           />
         </form>

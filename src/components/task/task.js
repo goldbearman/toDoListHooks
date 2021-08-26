@@ -26,8 +26,6 @@ export default class Task extends Component {
         }),
       60000
     );
-    // eslint-disable-next-line no-undef
-    // this.timeNow = this.setNewInterval("dateInterval", 60000);
     this.setState({
       timePlay: this.props.timer,
     });
@@ -39,13 +37,9 @@ export default class Task extends Component {
   }
 
   setNewInterval = (item, timeSize) => {
-    console.log(item);
     const timer = setInterval(
       () =>
         this.setState((prevState) => {
-          // console.log(item);
-          // console.log(item);
-          // console.log(prevState.item);
           // eslint-disable-next-line no-param-reassign
           return { [item]: --prevState[item] };
         }),
@@ -60,14 +54,6 @@ export default class Task extends Component {
         intevalStart: true,
       });
       this.linkTimer = this.setNewInterval("timePlay", 1000);
-      // this.linkTimer = setInterval(
-      //   () =>
-      //     this.setState((prevState) => {
-      //       // eslint-disable-next-line no-param-reassign
-      //       return { timePlay: ++prevState.timePlay };
-      //     }),
-      //   1000
-      // );
     }
   };
 
@@ -83,6 +69,11 @@ export default class Task extends Component {
     this.usePause();
   };
 
+  finished = () => {
+    clearInterval(this.linkTimer);
+    return "finished";
+  };
+
   static propTypes = {
     label: PropTypes.string,
     id: PropTypes.number,
@@ -92,24 +83,16 @@ export default class Task extends Component {
   };
 
   render() {
+    // eslint-disable-next-line no-unused-vars
     const { label, id, time, timer, onDeleleted, done } = this.props;
     let className = "";
     if (done) {
       className += "completed";
     }
-    let data = "fineshed";
-    console.log(data);
-    if (this.state.timePlay === 0 && timer !== 0) {
-      console.log("pause");
-      this.usePause();
-    }
-    if (timer !== 0) {
-      const dateNew = new Date(0, 0, 0, 0, 0, 0);
-      // dateNew.setHours(0, 0, 0, 0);
-      console.log(this.state.timePlay);
-      dateNew.setSeconds(this.state.timePlay);
-      data = format(dateNew, "mm:ss");
-    }
+    const dateNew = new Date(0, 0, 0, 0, 0, 0);
+    dateNew.setSeconds(this.state.timePlay);
+    let data = format(dateNew, "mm:ss");
+    // }
 
     let classPlay = "icon-player icon-play ";
     let classPause = "icon-player icon-pause ";
@@ -118,6 +101,7 @@ export default class Task extends Component {
     } else classPause += "active";
 
     const da = Date.now() + this.state.dateInterval;
+    if (this.state.timePlay === 0) data = this.finished();
 
     return (
       <li key={id} className={className}>
