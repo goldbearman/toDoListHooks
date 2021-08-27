@@ -10,22 +10,20 @@ export default class NewTaskForm extends Component {
   };
 
   onLabelChange = (e) => {
-    console.log(e.key);
     switch (e.target.name) {
       case "task":
-        console.log("t");
         this.setState({
           label: e.target.value,
         });
         break;
       case "min":
         this.setState({
-          min: this.checkNun(e.target.value, e),
+          min: this.checkNun(e.target.value),
         });
         break;
       case "sec":
         this.setState({
-          sec: this.checkNun(e.target.value, e),
+          sec: this.checkNun(e.target.value),
         });
         break;
       default:
@@ -41,7 +39,6 @@ export default class NewTaskForm extends Component {
   };
 
   handleKeyDown = (e) => {
-    console.log(e.keyCode);
     if (
       e.keyCode === 107 ||
       e.keyCode === 109 ||
@@ -53,14 +50,12 @@ export default class NewTaskForm extends Component {
   };
 
   onSubmit = (e) => {
-    console.log("onSubmit");
     e.preventDefault();
     if (this.state.label !== undefined && this.state.label.trim() !== "") {
-      console.log(this.state);
       this.props.onItemAdded({
         label: this.state.label,
-        min: this.checkNun(this.state.min),
-        sec: this.checkNun(this.state.sec),
+        min: this.state.min,
+        sec: this.state.sec,
       });
     }
     this.setState({
@@ -72,12 +67,12 @@ export default class NewTaskForm extends Component {
 
   render() {
     return (
-      <>
-        <form className="tasker" onSubmit={this.onSubmit}>
+      <div className="task-input">
+        <form className="task-input__task" onSubmit={this.onSubmit}>
           <input
             autoComplete="off"
             type="text"
-            className="new-todo task"
+            className="new-todo task-name"
             name="task"
             placeholder="Task"
             autoFocus
@@ -85,7 +80,7 @@ export default class NewTaskForm extends Component {
             value={this.state.label}
           />
         </form>
-        <form className="timer" onSubmit={this.onSubmit}>
+        <form className="task-input__min" onSubmit={this.onSubmit}>
           <input
             autoComplete="off"
             type="number"
@@ -98,7 +93,7 @@ export default class NewTaskForm extends Component {
             value={this.state.min}
           />
         </form>
-        <form className="timer" onSubmit={this.onSubmit}>
+        <form className="task-input__sec" onSubmit={this.onSubmit}>
           <input
             autoComplete="off"
             type="number"
@@ -110,7 +105,7 @@ export default class NewTaskForm extends Component {
             value={this.state.sec}
           />
         </form>
-      </>
+      </div>
     );
   }
 }

@@ -18,7 +18,6 @@ export default class App extends Component {
   };
 
   addItem = (item) => {
-    console.log(item);
     this.setState(({ todoData }) => {
       const newArr = [...todoData, this.createToDoItem(item)];
       return {
@@ -71,13 +70,12 @@ export default class App extends Component {
   };
 
   createToDoItem({ label, min, sec }) {
-    console.log(label, min, sec);
     return {
       label,
       done: false,
       id: this.maxId++,
       time: Date.now(),
-      timer: min * 60 + sec,
+      timer: Number(min) * 60 + Number(sec),
     };
   }
 

@@ -47,7 +47,6 @@ const TaskHook = (label, id, time, onDeleleted, onToggleDone, done) => {
   };
 
   const getDate = () => {
-    console.log("getDate");
     const dateNew = new Date(0, 0, 0, 0, 0, 0);
     dateNew.setSeconds(this.state.timePlay);
     const data = format(dateNew, "mm:ss");
@@ -57,7 +56,7 @@ const TaskHook = (label, id, time, onDeleleted, onToggleDone, done) => {
   // eslint-disable-next-line no-return-assign
   return (
     <li key={id} className={setClassName}>
-      <div className="view">
+      <div className="task">
         <input
           className="toggle"
           checked={done}

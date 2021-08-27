@@ -85,7 +85,6 @@ export default class Task extends Component {
   render() {
     // eslint-disable-next-line no-unused-vars
     const { label, id, time, timer, onDeleleted, done } = this.props;
-    console.log(timer);
     let className = "todo-list__item";
     if (done) {
       className += " completed";
@@ -93,7 +92,6 @@ export default class Task extends Component {
     const dateNew = new Date(0, 0, 0, 0, 0, 0);
     dateNew.setSeconds(this.state.timePlay);
     let data = format(dateNew, "mm:ss");
-    // }
 
     let classPlay = "icon-player icon-play ";
     let classPause = "icon-player icon-pause ";
@@ -106,9 +104,9 @@ export default class Task extends Component {
 
     return (
       <li key={id} className={className}>
-        <div className="view">
+        <div className="task">
           <input
-            className="toggle"
+            className="task__toggle"
             checked={done}
             type="checkbox"
             onChange={this.onChecked}

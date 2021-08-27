@@ -1,26 +1,24 @@
+.task-input {
+    display: flex;
+}
+
 .new-todo {
     font-size: 24px;
-    width: 100%;
+    width: 100px;
     padding: 16px 16px 16px 16px;
     border: none;
-    color: #a4a3a3;
+    color: #2b2929;
     font-style: italic;
     background: rgba(0, 0, 0, 0.003);
     box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);
     outline: none;
-    opacity: .6;
+    opacity: .8;
 
 }
 
-form.tasker{
-    width: 60%;
-}
-form.timer{
-    width: 20%;
-}
-
-.new-todo.task {
+.new-todo.task-name {
     padding-left: 50px;
+    width: 320px;
 }
 
 
