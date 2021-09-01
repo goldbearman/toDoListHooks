@@ -8,7 +8,7 @@ import "./task-list.css";
 const TaskList = ({ todos, onDeleted, onToggleDone }) => {
   const elements = todos.map((item) => {
     const { id } = item;
-
+    console.log(id);
     return (
       <TaskHooks
         key={id}

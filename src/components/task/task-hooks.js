@@ -13,11 +13,6 @@ const TaskHooks = ({
   onDeleleted,
   onToggleDone,
 }) => {
-  console.log(onDeleleted);
-  // let linkTimer = 0;
-  // eslint-disable-next-line no-unused-vars
-  // let timeNow = 0;
-
   const [timePlay, setTimePlay] = useState(0);
   const [intevalStart, setIntevalStart] = useState(false);
   const [dateInterval, setDateInterval] = useState(0);
@@ -25,7 +20,6 @@ const TaskHooks = ({
   const [timeNow, settimeNow] = useState(0);
 
   useEffect(() => {
-    console.log("useEffect didMount");
     // eslint-disable-next-line no-unused-vars
     const timerNow = setInterval(
       // eslint-disable-next-line no-param-reassign
@@ -38,7 +32,6 @@ const TaskHooks = ({
 
   useEffect(
     () => () => {
-      console.log("useEffect willUnMount");
       clearInterval(linkTimer);
       clearInterval(timeNow);
     },
@@ -48,10 +41,6 @@ const TaskHooks = ({
   // eslint-disable-next-line no-unused-vars
   const useInterval = () => {
     if (!intevalStart) {
-      console.log("useInterval ");
-      // this.setState({
-      //   intevalStart: true,
-      // });
       setIntevalStart(true);
       const linkTimerPlay = setInterval(
         // eslint-disable-next-line no-param-reassign
@@ -71,13 +60,11 @@ const TaskHooks = ({
   };
 
   const onChecked = () => {
-    console.log("onChecked ");
     onToggleDone();
     usePause();
   };
 
   const finished = () => {
-    console.log(linkTimer);
     clearInterval(linkTimer);
     return "finished";
   };
@@ -89,7 +76,6 @@ const TaskHooks = ({
   const dateNew = new Date(0, 0, 0, 0, 0, 0);
   dateNew.setSeconds(timePlay);
   let data = format(dateNew, "mm:ss");
-  // console.log(data);
 
   let classPlay = "icon-player icon-play ";
   let classPause = "icon-player icon-pause ";
@@ -99,9 +85,6 @@ const TaskHooks = ({
 
   const da = Date.now() + dateInterval;
   if (timePlay === 0) data = finished();
-  // console.log(da);
-  console.log(linkTimer);
-  console.log(timePlay);
 
   return (
     <li key={id} className={className}>

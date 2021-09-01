@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import App from "./components/app/app";
+import AppHooks from "./components/app/app-hooks";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<AppHooks />, document.getElementById("root"));
